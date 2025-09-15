@@ -13,8 +13,32 @@ const { NotImplementedError } = require('../lib');
  */
 
 function getCommonCharacterCount(s1, s2) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+ let count = 0;
+
+  const count1 = s1.split('').reduce((acc, cur) => {
+   if(!acc[cur]){
+     acc[cur] = 1;
+   } else{
+     acc[cur]++;
+   }
+   return acc;
+ }, {})
+
+  const count2 = s2.split('').reduce((acc, cur) => {
+    if(!acc[cur]){
+      acc[cur] = 1;
+    } else{
+      acc[cur]++;
+    }
+    return acc;
+  }, {})
+
+ for (let key in count2) {
+   if(key in count1) {
+     count += Math.min(count1[key], count2[key]);
+   }
+ }
+ return count
 }
 
 module.exports = {
